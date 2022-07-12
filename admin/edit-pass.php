@@ -55,7 +55,7 @@
                                         </form>
                                         <a href="user.php"><button class="btn btn-light">Cancel</button></a>
                                         <?php
-                                        if (isset($_POST['edit'])) :
+                                        if (isset($_POST['edit'])) {
                                             $lama = $_POST['lama'];
                                             $baru = $_POST['baru'];
                                             $konfirm = $_POST['confirm'];
@@ -89,7 +89,7 @@
                                                 }
 
                                             endif;
-                                        endif;
+                                        }
                                         ?>
                                     </div>
                                 </div>

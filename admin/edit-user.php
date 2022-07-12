@@ -41,7 +41,7 @@ if (!isset($_SESSION['email'])) {
                                             </div>
                                             <button type="submit" name="edit" class="btn btn-primary mr-2">Submit</button>
                                         </form>
-                                        <a href="kategori.php"><button class="btn btn-light">Cancel</button></a>
+                                        <a href="user.php"><button class="btn btn-light">Cancel</button></a>
                                         <?php
                                         if (isset($_POST['edit'])) {
                                             $koneksi->query("UPDATE admin SET email_admin='$_POST[email]',username='$_POST[username]' WHERE id_admin='$_GET[id]'");

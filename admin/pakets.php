@@ -58,7 +58,7 @@ if (!isset($_SESSION['email'])) {
                                                     <a href="edit-pakets.php?id=<?php echo $pecah['id_paket']; ?>" class="btn btn-warning btn-sm">Ubah</a>
                                                     
                                                     
-                                                    <a href="index.php?halaman=detailproduk&id=<?php echo $pecah['id_paket']; ?>" class="btn btn-info btn-sm">Detail</a>
+                                                    <a href="detail-paket.php?id=<?php echo $pecah['id_paket']; ?>" class="btn btn-info btn-sm">Detail</a>
                                                 </td>
                                             </tr>
                                             <?php $nomor++; ?>

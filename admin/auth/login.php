@@ -34,6 +34,9 @@
                                     <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" name="simpan">SIGN IN</button>
                                 </div>
                             </form>
+                            <div class="mt-3">
+                                <a href="../../index.php">Back</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -47,20 +50,20 @@
         $email = $_POST['email'];
         $password = $_POST['password'];
         $ambil = $koneksi->query("SELECT * FROM admin WHERE email_admin='$email' AND password='$password'");
-       
+
         if (mysqli_num_rows($ambil) == 0) {
             echo "<script> alert('anda gagal login, cek akun anda');</script>";
             echo "<script> location ='login.php';</script>";
         } else {
-                while ($row = mysqli_fetch_array($ambil)) {
-                    $_SESSION['simpan'] = true;
-                    $_SESSION['id_admin'] = $row['id_admin'];
-                    $_SESSION['username'] = $row['username'];
-                    $_SESSION['email'] = $row['email_admin'];
-                    $_SESSION['pw'] = $row['password'];
-                }
-                echo "<script> alert('anda sukses login');</script>";
-                echo "<script> location ='../index.php';</script>";
+            while ($row = mysqli_fetch_array($ambil)) {
+                $_SESSION['simpan'] = true;
+                $_SESSION['id_admin'] = $row['id_admin'];
+                $_SESSION['username'] = $row['username'];
+                $_SESSION['email'] = $row['email_admin'];
+                $_SESSION['pw'] = $row['password'];
+            }
+            echo "<script> alert('anda sukses login');</script>";
+            echo "<script> location ='../index.php';</script>";
         }
     }
     ?>
