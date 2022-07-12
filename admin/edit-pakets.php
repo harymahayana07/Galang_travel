@@ -18,7 +18,7 @@ if (!isset($_SESSION['email'])) {
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Add Packets</h4>
+                            <h4 class="card-title">Edit Packets</h4>
                             <div class="row mt-2" style="float: right; margin-right: 20px;">
                             </div>
                             <p class="card-description">
@@ -26,6 +26,12 @@ if (!isset($_SESSION['email'])) {
                             <div class="col-12 grid-margin stretch-card">
                                 <div class="card ">
                                     <div class="card-body">
+                                        <?php
+                                        $ambil = $koneksi->query("SELECT * FROM paket WHERE id_paket='$_GET[id]'");
+                                        $pecah = $ambil->fetch_assoc();
+                                        $am = $koneksi->query("SELECT * FROM paket_foto WHERE id_paket='$_GET[id]'");
+                                        $pe = $am->fetch_assoc();
+                                        ?>
                                         <?php
                                         $datakategori = array();
                                         $ambil = $koneksi->query("SELECT * FROM kategori");
@@ -37,7 +43,7 @@ if (!isset($_SESSION['email'])) {
                                         <form class="forms-sample d-inline" method="post" enctype="multipart/form-data">
                                             <div class="form-group">
                                                 <label for="paket">Packets Name</label>
-                                                <input type="text" name="nama" class="form-control" id="paket" placeholder="packets name" required>
+                                                <input type="text" name="nama" class="form-control" id="paket" value="<?php echo $pecah['nama_paket']; ?>" required>
                                             </div>
                                             <!-- select option kategory -->
                                             <div class="form-group">
@@ -45,58 +51,59 @@ if (!isset($_SESSION['email'])) {
                                                 <select id="kategory" class="form-control" name="id_kategori" required>
                                                     <option value="">Pilih Kategori</option>
                                                     <?php foreach ($datakategori as $key => $value) : ?>
-                                                        <option value="<?php echo $value["id_kategori"] ?>"><?php echo $value["nama_kategori"] ?></option>
+
+                                                        <option value="<?php echo $value["id_kategori"] ?>" <?php if ($pecah["id_kategori"] == $value["id_kategori"]) {
+                                                                                                                echo "selected";
+                                                                                                            } ?>><?php echo $value["nama_kategori"] ?></option>
+
                                                     <?php endforeach ?>
                                                 </select>
                                             </div>
                                             <div class="form-group">
                                                 <label for="harga1">Harga Paket (Rp)</label>
-                                                <input type="number" name="harga" class="form-control" id="harga1" placeholder="harga pakets" required>
+                                                <input type="number" name="harga" class="form-control" id="harga1" value="<?php echo $pecah['harga_paket']; ?>" required>
                                             </div>
                                             <div class="form-group">
                                                 <label for="lokasi1">Lokasi Maps</label>
-                                                <input type="text" name="lokasi" class="form-control" id="lokasi1" placeholder="Input embed maps on Google" required>
+                                                <input type="text" name="lokasi" class="form-control" id="lokasi1" value="<?php echo $pecah['lokasi_maps']; ?>" required>
                                             </div>
                                             <div class="form-group">
-                                                <label for="img">Images</label>
-                                                <div class="letak-input input-group col-xs-12 mb-3">
-                                                    <input id="img" type="file" class="form-control file-upload-info" name="foto[]" required>
-                                                </div>
-                                                <span class="btn btn-primary btn-tambah">+
-                                                </span>
+
+                                                <img src="../foto_paket/<?php echo $pecah['foto_wisata']; ?>" width="200">
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="img">Ganti Foto</label>
+                                                <div class="input-group col-xs-12 mb-3">
+                                                    <input id="img" type="file" class="form-control file-upload-info" name="foto">
+                                                
                                             </div>
                                             <div class="form-group">
                                                 <label for="des">Deskripsi</label>
-                                                <textarea class="form-control" name="deskripsi" id="des" rows="4" required></textarea>
+                                                <textarea class="form-control" name="deskripsi" id="des" rows="4" required><?php echo $pecah['deskripsi_wisata']; ?></textarea>
                                             </div>
-                                            <button type="submit" name="save" class="btn btn-primary mr-2">Submit</button>
+                                            <button type="submit" name="edit" class="btn btn-primary mr-2">Update</button>
                                         </form>
                                         <a href="pakets.php"><button class="btn btn-danger">Cancel</button></a>
                                         <?php
-                                        if (isset($_POST['save'])) {
-                                            $namanamafoto = $_FILES['foto']['name'];
-                                            $lokasilokasifoto = $_FILES['foto']['tmp_name'];
-                                            move_uploaded_file($lokasilokasifoto[0], "../foto_paket/" . $namanamafoto[0]);
-                                            $koneksi->query("INSERT INTO paket
-		(nama_paket,id_kategori, harga_paket,lokasi_maps,foto_wisata,deskripsi_wisata)
-		VALUES('$_POST[nama]','$_POST[id_kategori]','$_POST[harga]','$_POST[lokasi]','$namanamafoto[0]','$_POST[deskripsi]')");
-                                            $id_paket_barusan = $koneksi->insert_id;
-                                            foreach ($namanamafoto as $key => $tiap_nama) {
-                                                $tiap_lokasi = $lokasilokasifoto[$key];
+                                        if (isset($_POST['edit'])) {
 
-                                                move_uploaded_file($tiap_lokasi, "../foto_paket/" . $tiap_nama);
+                                            $namafoto = $_FILES['foto']['name'];
+                                            $lokasifoto = $_FILES['foto']['tmp_name'];
+                                            // $lokasifoto = $foto['tmp_name'];
 
-                                                $koneksi->query("INSERT INTO paket_foto(id_paket, nama_paket_foto)
-			VALUES('$id_paket_barusan','$tiap_nama')");
+                                            if (!empty($lokasifoto)) {
+                                                move_uploaded_file($lokasifoto, "../foto_paket/$namafoto");
+
+                                                $koneksi->query("UPDATE paket SET nama_paket='$_POST[nama]',id_kategori='$_POST[id_kategori]', harga_paket='$_POST[harga]',lokasi_maps='$_POST[lokasi]',foto_wisata='$namafoto', deskripsi_wisata='$_POST[deskripsi]' WHERE id_paket='$_GET[id]'");
+                                            } else {
+                                                $koneksi->query("UPDATE paket SET nama_paket='$_POST[nama]', id_kategori='$_POST[id_kategori]',harga_paket='$_POST[harga]',lokasi_maps='$_POST[lokasi]', deskripsi_wisata='$_POST[deskripsi]' WHERE id_paket='$_GET[id]'");
                                             }
-
-                                            // echo "<div class='alert alert-info'>Data Tersimpan</div>";
-                                            // echo "<meta http-equiv='refresh' content='l;url=index.php?halaman=produk'>";
-                                            echo "<pre>";
-                                            print_r($_FILES["foto"]);
-                                            echo "</pre>";
+                                            echo "<script>alert('data paket telah diubah');</script>";
+                                            echo "<script>location='pakets.php';</script>";
                                         }
                                         ?>
+
                                     </div>
                                 </div>
                             </div>

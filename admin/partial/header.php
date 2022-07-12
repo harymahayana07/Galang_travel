@@ -10,4 +10,5 @@
     <link rel="stylesheet" type="template/text/css" href="js/select.dataTables.min.css">
     <link rel="stylesheet" href="template/css/vertical-layout-light/style.css">
     <link rel="shortcut icon" href="template/images/favicon.png" />
+    <script src="jquery-1.10.2.js"></script>
 </head>

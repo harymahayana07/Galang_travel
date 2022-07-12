@@ -18,13 +18,11 @@
                   <span class="menu-title">Category</span>
               </a>
           </li>
-          </li>
           <li class="nav-item">
-              <a class="nav-link" data-toggle="collapse" href="user.php" aria-expanded="false" aria-controls="auth">
+              <a class="nav-link" href="user.php">
                   <i class="icon-head menu-icon"></i>
                   <span class="menu-title">User Page</span>
               </a>
           </li>
-
       </ul>
   </nav>

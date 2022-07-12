@@ -21,7 +21,6 @@ if (!isset($_SESSION['email'])) {
                             <h4 class="card-title">Pengelolaan Paket</h4>
                             <div class="row mt-2" style="float: right; margin-right: 20px;">
                                 <a href="add-pakets.php"><button type="button" class="btn btn-primary">Tambah Paket</button></a>&emsp;
-                                <button type="button" class="btn btn-danger">Reset</button>
                             </div>
                             <p class="card-description">
                             </p>
@@ -41,7 +40,6 @@ if (!isset($_SESSION['email'])) {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <!--  -->
                                         <?php $nomor = 1; ?>
                                         <?php $ambil = $koneksi->query("SELECT * FROM paket LEFT JOIN kategori ON paket.id_kategori=kategori.id_kategori"); ?>
                                         <?php while ($pecah = $ambil->fetch_assoc()) { ?>
@@ -49,43 +47,23 @@ if (!isset($_SESSION['email'])) {
                                                 <td><?php echo $nomor; ?></td>
                                                 <td><?php echo $pecah['nama_paket'] ?></td>
                                                 <td><?php echo $pecah['nama_kategori'] ?></td>
-                                                <td><?php echo $pecah['harga_paket'] ?></td>
-                                                <td><?php echo $pecah['lokasi_maps'] ?></td>
+                                                <td>Rp.<?php echo $pecah['harga_paket'] ?></td>
+                                                <td><?php echo substr($pecah['lokasi_maps'],0,10);  ?>...</td>
                                                 <td>
-                                                    <img src="../foto_produk/<?php echo $pecah['foto_wisata'] ?>" width="100px">
+                                                    <img src="../foto_paket/<?php echo $pecah['foto_wisata'] ?>" width="100px">
                                                 </td>
-                                                <td><?php echo $pecah['deskripsi_wisata'] ?></td>
+                                                <td><?php echo substr($pecah['deskripsi_wisata'],0,10);  ?>...</td>
                                                 <td>
-                                                    <a href="index.php?halaman=hapusproduk&id=<?php echo $pecah['id_paket']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin Mau di Hapus?')"><i class="lyphicon glyphicon-trash"></i>Hapus</a>
-                                                    <a href="index.php?halaman=ubahproduk&id=<?php echo $pecah['id_paket']; ?>" class="btn btn-warning btn-sm"><i class="lyphicon glyphicon-edit"></i>Ubah</a>
-                                                    <a href="index.php?halaman=detailproduk&id=<?php echo $pecah['id_paket']; ?>" class="btn btn-info btn-sm"><i class="glyphicon glyphicon-eye">Detail</a>
+                                                    <a href="delete-pakets.php?id=<?php echo $pecah['id_paket']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin Mau di Hapus?')">Hapus</a>
+                                                    <a href="edit-pakets.php?id=<?php echo $pecah['id_paket']; ?>" class="btn btn-warning btn-sm">Ubah</a>
+                                                    
+                                                    
+                                                    <a href="index.php?halaman=detailproduk&id=<?php echo $pecah['id_paket']; ?>" class="btn btn-info btn-sm">Detail</a>
                                                 </td>
                                             </tr>
                                             <?php $nomor++; ?>
                                         <?php } ?>
-                                        <!--  -->
-                                        <!-- <tr>
-                                            <td>
-                                                1
-                                            </td>
-                                            <td>
-                                                Trip Tiu kelep
-                                            </td>
-                                            <td>
-                                                <div class="progress">
-                                                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                $ 77.99
-                                            </td>
-                                            <td>
-                                                Lokasi Wisata ini terletak di daerah Senaru , Kabupaten Lombok Utara
-                                            </td>
-                                            <td>
-                                                May 15, 2015
-                                            </td>
-                                        </tr> -->
+                                       
                                     </tbody>
                                 </table>
                             </div>

@@ -18,10 +18,9 @@ if (!isset($_SESSION['email'])) {
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Pengelolaan Kategory</h4>
+                            <h4 class="card-title">Pengelolaan Kategori</h4>
                             <div class="row mt-2" style="float: right; margin-right: 20px;">
                                 <a href="add-kategori.php"><button type="button" class="btn btn-primary">Tambah kategori</button></a>&emsp;
-                                <button type="button" class="btn btn-danger">Reset</button>
                             </div>
                             <p class="card-description">
                             </p>
@@ -44,8 +43,8 @@ if (!isset($_SESSION['email'])) {
                                                 <td><?php echo $nomor ?></td>
                                                 <td><?php echo $pecah["nama_kategori"] ?></td>
                                                 <td>
-                                                    <a href="index.php?halaman=hapuskategori&id=<?php echo $pecah['id_kategori']; ?>" class="btn btn-warning btn-sm">Hapus</a>
-                                                    <a href="index.php?halaman=ubahkategori&id=<?php echo $pecah['id_kategori']; ?>" class="btn btn-danger btn-sm">Ubah</a>
+                                                    <a href="delete-kategori.php?id=<?php echo $pecah['id_kategori']; ?>" class="btn btn-warning btn-sm">Hapus</a>
+                                                    <a href="edit-kategori.php?id=<?php echo $pecah['id_kategori']; ?>" class="btn btn-danger btn-sm">Ubah</a>
                                                 </td>
 
                                             </tr>
