@@ -1,3 +1,4 @@
+<?php $thisPage = "Index"; ?>
 <!DOCTYPE html>
 <html>
 
@@ -13,8 +14,8 @@
       <div class="row gy-4 d-flex justify-content-between">
         <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center mb-10">
           <h2 data-aos="fade-up">Private Trip , Booking Hotel & Villa mudah dengan Harga Murah</h2>
-          <p data-aos="fade-up" data-aos-delay="100">Facere distinctio molestiae nisi fugit tenetur repellat non praesentium nesciunt optio quis sit odio nemo quisquam. eius quos reiciendis eum vel eum voluptatem eum maiores eaque id optio ullam occaecati odio est possimus vel reprehenderit</p>
-
+          <p data-aos="fade-up" data-aos-delay="100">Galang Travel adalah penyedia layanan pemesanan paket private trip , Booking hotel dan villa secara
+            online dengan berfokus di wilayah lombok , nusa tenggara barat. dan Didirikan oleh <a href="https://www.instagram.com/galang_purnm/">Galang Purnama</a>. , hingga aktivitas wisata.</p>
           <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
             <div class="pricing-item">
               <a href="paket_index.php" class=" btn btn-primary buy-btn">Lihat Selengkapnya</a>

@@ -73,7 +73,7 @@ if (!isset($_SESSION['email'])) {
 
                                             </div>
                                             <div class="form-group">
-                                                <label for="img">Ganti Foto</label>
+                                                <label for="img">Ganti Foto Baru</label>
                                                 <div class="input-group col-xs-12 mb-3">
                                                     <input id="img" type="file" class="form-control file-upload-info" name="foto">
                                                 

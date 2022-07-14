@@ -56,7 +56,7 @@
     }
 </style>
 <div class="whatsapp-btn">
-    <a class="white-icon" href="https://api.whatsapp.com/send?phone=6287765108318&text=Saya%20tertarik%20untuk%20belanja"><i class="fab fa-whatsapp fa-3x"></i></a>
+    <a class="white-icon" href="https://api.whatsapp.com/send?phone=6281339877791&text=Saya%20tertarik%20dengan%20paket%20yang%20anda%20tawarkan."><i class="fab fa-whatsapp fa-3x"></i></a>
 </div>
 
 <script>

@@ -34,7 +34,7 @@ if (!isset($_SESSION['email'])) {
                                 <?php while ($pecah = $ambil->fetch_assoc()) { ?>
                                     <a href="edit-user.php?id=<?php echo $pecah['id_admin']; ?>" class="btn btn-warning">Ubah Profil</a>
                                 <?php } ?>
-                                <!-- <a href="edit-pass.php" class="btn btn-warning">Ubah Password</a> -->
+                                <a href="edit-pass.php" class="btn btn-warning">Ubah Password</a>
                             </div>
                         </div>
                     </div>
